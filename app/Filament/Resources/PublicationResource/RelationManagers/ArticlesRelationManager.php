@@ -4,6 +4,8 @@ namespace App\Filament\Resources\PublicationResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -45,7 +47,8 @@ class ArticlesRelationManager extends RelationManager
                 Tables\Actions\AssociateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()->slideOver(),
+                Tables\Actions\EditAction::make()->slideOver(),
                 Tables\Actions\DissociateAction::make(),
             ])
             ->bulkActions([
@@ -53,5 +56,15 @@ class ArticlesRelationManager extends RelationManager
                     Tables\Actions\DissociateBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist->schema([
+            TextEntry::make('title'),
+            TextEntry::make('publication.title'),
+            TextEntry::make('published_at')->date(),
+            TextEntry::make('content')->html()->columnSpanFull(),
+        ]);
     }
 }

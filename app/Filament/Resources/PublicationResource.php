@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PublicationResource\Pages;
+use App\Filament\Resources\PublicationResource\RelationManagers\ArticlesRelationManager;
 use App\Models\Publication;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -73,7 +74,7 @@ class PublicationResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ArticlesRelationManager::class,
         ];
     }
 

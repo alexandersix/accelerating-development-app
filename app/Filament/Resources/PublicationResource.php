@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\Publications;
 use App\Filament\Resources\PublicationResource\Pages;
 use App\Filament\Resources\PublicationResource\RelationManagers\ArticlesRelationManager;
 use App\Models\Publication;
@@ -16,7 +17,9 @@ class PublicationResource extends Resource
 {
     protected static ?string $model = Publication::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-book-open';
+    protected static ?string $navigationIcon = 'heroicon-o-folder';
+
+    protected static ?string $cluster = Publications::class;
 
     public static function form(Form $form): Form
     {
